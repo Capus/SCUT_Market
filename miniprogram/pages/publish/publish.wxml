@@ -1,0 +1,26 @@
+<!--pages/publish/publish.wxml-->
+<form bindsubmit="formSubmit" class='container'>
+  <view class="section">
+    <view class="section__title">Title</view>
+    <input name="Title" placeholder="please input here" value='{{inputValue}}' />
+  </view>
+  <view class="section">
+    <view class="section__title">Body</view>
+    <input name="Body" placeholder="please input here" value='{{inputValue}}' />
+  </view>
+  <view class="section">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        <button class='btn-area'>联系方式：{{array[index]}}</button>
+      </view>
+    </picker>
+    <input name="Contact" placeholder="please input here" value='{{inputValue}}' />
+  </view>
+  <view class="section">
+    <view class="section__title">BusinessWay</view>
+    <input name="BusinessWay" placeholder="please input here" value='{{inputValue}}' />
+  </view>
+  <view class="btn-area">
+    <button form-type="submit">Submit</button>
+  </view>
+</form>

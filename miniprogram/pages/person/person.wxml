@@ -1,0 +1,12 @@
+<!--pages/person/person.wxml-->
+<text>Hello! user: {{user}}</text>
+<view class='userinfo'>
+  <button class='userinfo-button'
+  bindtap='per_info'>通知消息</button>
+</view>
+<view class='userinfo'>
+  <button class='userinfo-button'
+  bindtap='myBusiness'>我的帖子</button>
+</view>
+
+  

@@ -1,0 +1,4 @@
+/* pages/publish/publish.wxss */
+.section {
+  margin-top:20px 
+}

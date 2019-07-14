@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/market/market",
+    "pages/publish/publish",
+    "pages/person/person",
+    "pages/per_info/per_info",
+    "pages/myBusiness/myBusiness"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "text": "市场",
+        "pagePath": "pages/market/market",
+        "iconPath": "images/icons/market.png",
+        "selectedIconPath": "images/icons/market2.png"
+      },
+      {
+        "text": "发布",
+        "pagePath": "pages/publish/publish",
+        "iconPath": "images/icons/Add.png",
+        "selectedIconPath": "images/icons/Add2.png"
+      },
+      {
+        "text": "个人",
+        "pagePath": "pages/person/person",
+        "iconPath": "images/icons/Person.png",
+        "selectedIconPath": "images/icons/Person2.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "华工跳蚤市场",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}
