@@ -30,7 +30,7 @@ Page({
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid,
-        user: app.globalData.openid.substring(0, 4)
+        user: app.globalData.openid.substring(14, 4)
       })
     }
   }
