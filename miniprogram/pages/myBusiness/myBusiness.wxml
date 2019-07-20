@@ -1,2 +1,3 @@
 <!--pages/myBusiness/myBusiness.wxml-->
-<text>pages/myBusiness/myBusiness.wxml</text>
+<button bindtap='test'>test</button>
+<button bindtap='test2'>test2</button>

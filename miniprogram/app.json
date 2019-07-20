@@ -1,4 +1,5 @@
 {
+  "cloud": true,
   "pages": [
     "pages/market/market",
     "pages/publish/publish",
