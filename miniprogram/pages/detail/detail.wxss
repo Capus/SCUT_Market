@@ -1,0 +1,122 @@
+.detailContainer {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+} 
+
+.title{
+  font-weight: bold; 
+  font-size: 50rpx;
+  display: block;
+}
+
+.businessWay{
+  font-weight: bold; 
+  font-size: 35rpx;
+  color: grey;
+  margin-top: 20rpx;
+  display: block;
+}
+
+.body{
+  font-size: 35rpx;
+  margin-top: 20rpx;
+  display: block;
+}
+
+.contact{
+  font-size: 35rpx;
+  margin-top: 20rpx;
+  display: block;
+}
+
+.date{
+  font-size: 25rpx;
+  margin-top: 20rpx;
+  display: block;
+  color: grey;
+}
+
+/* 横着的分割View样式 */
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 5rpx;
+ margin-top: 20rpx;
+}
+
+.comment {
+  width: 100vw;
+  height: 16vw;
+  border-top: 1px solid #cdcdcd;
+  background-color: #f1f1f1;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+input {
+  width: 76vw;
+  height: 10vw;
+  background-color: #fff;
+  border-radius: 40rpx;
+  margin-left: 2vw;
+  padding: 0 3vw;
+  font-size: 28rpx;
+  color: #444;
+}
+
+.inputRoom {
+  width: 100vw;
+  height: 14vw;
+  border-top: 1px solid #cdcdcd;
+  background-color: #f1f1f1;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+.cu-item{
+  margin-top:30rpx;
+  margin-left: 30rpx; 
+  margin-right: 30rpx;
+}
+
+.recomment{
+  background-color: grey;
+  padding-left: 20rpx;
+  padding-bottom: 5rpx;
+}
+
+.holder{
+  width: 100vw;
+  height: 13vw;
+}
+
+.image_content{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15rpx;
+  margin-left: 30rpx;
+}
+
+.image{
+  width:31%;
+  height: 200rpx;
+  margin-top: 15rpx;
+}
+ 
+.moment_img{
+  width: 195rpx;
+  height: 195rpx;
+}

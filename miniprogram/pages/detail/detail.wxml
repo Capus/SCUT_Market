@@ -1,0 +1,43 @@
+<view>
+  <view class='detailContainer'>
+    <scroll-view scroll-y>
+      <text class='title'>{{business.title}}</text>
+      <text class='businessWay'>业务类型：{{business.businessWay}}</text>
+      <view class="divLine"></view>
+      <text class='body'>{{business.body}}</text>
+      <view class="image_content">
+        <view class='image' wx:for="{{img_url}}" wx:key>
+          <image class="moment_img" src="{{item}}" bindtap='previewImg' data-source='{{item}}'></image>
+        </view>
+      </view>
+      <text class='contact' style='font-size:30rpx;'>联系方式：{{business.contactWay}}：{{business.contact}}</text>
+      <text style='font-weight: bold; font-size:25rpx; color:red;' bindtap='copyBtn'>[一键复制联系方式]</text>
+      <text class='date'>发帖时间：{{business.date}}</text>
+      <view class="divLine"></view>
+      <view style='margin-top: 20rpx;'>
+        <text style='font-weight: bold; font-size: 35rpx; '>评论：</text>
+        <block wx:for="{{comment_list}}" wx:for-index="index" wx:for-item="clist" wx:key>
+          <view class="cu-item" wx:if="{{clist.reply_id == 0}}"> 
+            <text style='font-size: 28rpx; color: grey; display:block;'>{{clist.comment_user_name}}</text>
+            <text style='font-size: 26rpx; color: grey; display:block;' bindtap='replyComment' data-name='{{clist.comment_user_name}}' data-cid='{{clist.comment_id}}' data-type="1" data-pid="{{clist.comment_id}}">{{clist.comment_text}}</text>
+            <block wx:for="{{comment_list2}}" wx:key wx:for-index="c2" wx:for-item="clist2">
+              <view class='recomment' wx:if="{{clist2.parent_id==clist.comment_id}}">
+                <view bindtap='replyComment' data-name='{{clist2.comment_user_name}}' data-cid='{{clist2.comment_id}}' data-type="2" data-pid="{{clist2.parent_id}}">
+                  <text style='font-size: 25rpx; color: white; ' wx:if="{{clist2.reply_name.length>0}}">{{clist2.comment_user_name}} 回复 {{clist2.reply_name}}：</text>
+                  <text style='font-size: 25rpx; color: white; 'wx:if="{{clist2.reply_name.length==0}}">{{clist2.comment_user_name}}：</text>
+                  <text style='font-size: 25rpx; color: white; '>{{clist2.comment_text}}</text>
+                </view>
+              </view>
+            </block>
+            <view class="divLine"></view>
+          </view>
+        </block>
+      </view>
+      <view class = 'holder'></view>
+    </scroll-view>
+  </view>
+  <view class='inputRoom'>
+    <text style='font-size: 35rpx; margin-left: 3vw;'>评论：</text>
+    <input cursor-spacing='10'placeholder='{{placeholder}}' bindconfirm='sendClick' value='{{inputVal}}' confirm-type='send' focus='{{focus}}' bindfocus='focus' bindblur='blur' bindinput='getCommentText'></input>
+  </view>
+</view>

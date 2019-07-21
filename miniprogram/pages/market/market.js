@@ -21,6 +21,14 @@ Page({
         console.error('[云函数] [login] 调用失败', err)
       }
     })
-  }
+  },
+
+  test: function(event) {
+    var id = "13dba11c5d3486200cc7e27b0b38f6e4"
+    wx.navigateTo({
+      url: '../detail/detail?id=' + id,
+    })
+
+  },
 
 })

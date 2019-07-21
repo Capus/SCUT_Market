@@ -12,7 +12,17 @@ Page({
     array: ['wechat', 'qq', 'telephone'],
     index: 0,
     files: [],
-    fileIDs: []
+    fileIDs: [],
+    userName: '',
+    comment: {
+      record: 1,
+      clist1: [//楼
+        {}
+      ],
+      clist2: [//楼中楼
+        {}
+      ]
+    }
   },
 
   bindPickerChange: function(e) {
@@ -37,7 +47,8 @@ Page({
         contactWay: this.data.array[this.data.index],
         businessWay: res.detail.value['BusinessWay'],
         imgs: this.data.fileIDs,
-        date: util.formatTime(new Date())
+        date: util.formatTime(new Date()),
+        comment: this.data.comment
       }
     })
   },
@@ -59,8 +70,13 @@ Page({
         const cloudPath = []
         const fileIDs = that.data.fileIDs
         filePath.forEach((item, i) => {
-          cloudPath.push('user' + that.data.token + filePath[i].substring(filePath[i].length-12, filePath[i].length-4) + filePath[i].match(/\.[^.]+?$/)[0])
+          cloudPath.push(that.data.userName + '-' + filePath[i].substring(filePath[i].length - 12, filePath[i].length - 4) + filePath[i].match(/\.[^.]+?$/)[0])
         })
+        if (filePath.length > 1) {
+          filePath.reverse()
+        }
+        //此处有潜藏的bug，因为上传的任务会因为网络延时而造成排序错误，
+        //导致后续的id检索不对应，仅针对一次性选中多张图片而言
         filePath.forEach((item, i) => {
           wx.cloud.uploadFile({
             cloudPath: cloudPath[i],
@@ -91,10 +107,68 @@ Page({
     })
   },
 
-  previewImage: function (e) {
+  previewImage: function(e) {
     wx.previewImage({
       current: e.currentTarget.id,
       urls: this.data.files
+    })
+  },
+
+  clearImg: function (params) {
+    var that = this;
+    let imgList = that.data.files;
+    let id = params.currentTarget.dataset.id // 图片索引
+    console.log(params.currentTarget.dataset)
+    const fileList = new Array()
+    let clone_IDs = this.data.fileIDs
+    fileList[0] = that.data.fileIDs[id]
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此图片吗？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('点击确定了');
+          imgList.splice(id, 1);
+          clone_IDs.splice(id, 1)
+          that.setData({
+            files: imgList
+          })
+          wx.cloud.deleteFile({
+            fileList: fileList,
+            success: res => {
+              console.log(res.fileList)
+            },
+            fail: console.error,
+
+            complete: () => {
+              that.setData({
+                fileIDs: clone_IDs
+              })
+            }
+          })
+        }
+        else if (res.cancel) {
+          console.log('点击取消了');
+          return false;
+        }
+      }
+    })
+  },
+
+  openToast: function (params) {
+    wx.showToast({
+      title: '已完成',
+      icon: 'success',
+      duration: 3000
+    });
+    var that = this;
+    let imgList = that.data.files;
+    let id = params.currentTarget.dataset.id;
+    let len = imgList.length;
+    imgList.splice(id, len);
+    that.setData({
+      files: imgList,
+      inputValue: ""
     })
   },
 
@@ -103,7 +177,7 @@ Page({
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid,
-        token: app.globalData.openid.substring(6, 10)
+        userName: 'user-' + app.globalData.openid.substring(6, 10)
       })
     }
   }

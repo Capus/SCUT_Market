@@ -1,2 +1,2 @@
 <!--pages/market/market.wxml-->
-<text>pages/market/market.wxml</text>
+<button bindtap='test'>test</button>
