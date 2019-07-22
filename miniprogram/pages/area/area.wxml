@@ -1,0 +1,6 @@
+<!--pages/area/area.wxml-->
+<view class='area-wrap' >
+<!-- area choose -->
+<view bindtap='currentArea' data-index='{{index}}' class='area' wx:for="{{area}}" wx:key="{{index}}">
+{{item.local}}</view>
+</view> 

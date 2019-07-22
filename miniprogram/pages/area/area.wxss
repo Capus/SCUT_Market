@@ -1,0 +1,13 @@
+/* pages/area/area.wxss */
+.area-wrap{
+  display: flex;
+  flex-direction: column;
+
+
+}
+.area{
+
+ margin: 20rpx;
+  flex: 1;
+border-bottom: 1px solid rgb(209, 205, 205);
+}

@@ -1,0 +1,17 @@
+<!--components/Title/Title.wxml-->
+<view class='Title'>
+<!-- 搜索栏 -->
+<navigator hover-class='navigator-hover' url='../search/search'>
+<view class='searchBox'>
+<image class='searchIcon' src='../../images/search.png' mode='widthFix'></image>
+<view class='searchText'>
+<text>点击查找{{searchText}}</text></view>
+</view>
+</navigator>
+<!-- 地址栏 -->
+<navigator  url="../area/area" hover-class='navigator-hover' class='area' >
+<view class='areaBorder'>
+<text>华工南校区{{localarea}}</text>
+</view>
+</navigator>
+</view>

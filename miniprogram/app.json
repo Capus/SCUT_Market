@@ -6,7 +6,9 @@
     "pages/person/person",
     "pages/per_info/per_info",
     "pages/myBusiness/myBusiness",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/area/area",
+    "pages/search/search"
   ],
   "tabBar": {
     "list": [

@@ -1,0 +1,21 @@
+<!--pages/search/search.wxml-->
+<view >
+<!-- 地址栏 -->
+<view class='areaTitle'>
+<image src='../../images/location.png' mode='widthFix'></image>
+<navigator  url="../area/area" hover-class='navigator' class='area' >
+<view class='areaBorder' wx:for="{{currentArea}}" wx:key="{{index}}">
+<text >当前地区:{{item.local}}</text>
+</view>
+</navigator>
+</view>
+  <!-- 搜索栏 -->
+  <form bindsubmit="submit">
+    <view class='searchBox'>
+
+      <input class="input {{inputFocus===true?'active':''}}" bindinput='bindinput' bindfocus='bindFocus' bindblur='loseFocus' name='input' bindconfirm='searchConfirm' confirm-type='search' placeholder='点击输入' value="{{inputValue}}"></input>
+      <button disabled='{{btnState}}' class="searchButton {{btnState===false?'active':''}}" form-type='submit' plain>搜索</button>
+    </view>
+  </form>
+
+</view>

@@ -1,2 +1,37 @@
 <!--pages/market/market.wxml-->
-<button bindtap='test'>test</button>
+<view> 
+<!-- 地址栏和搜索栏 -->
+  <view class='Title'>
+  <!-- 搜索栏 -->
+    <navigator hover-class='navigator' url='../search/search'>
+        <view class='searchBox'>
+          <image class='searchIcon' src='../../images/search.png' mode='widthFix'></image>
+        <view class='searchText'>
+          <text>点击查找</text>
+        </view>
+      </view>
+    </navigator>
+
+  <!-- 地址栏 -->
+  <navigator  url="../area/area" hover-class='navigator' class='area' >
+    <view class='areaBorder' wx:for="{{currentArea}}" wx:key="{{index}}">
+      <text >{{item.local}}</text>
+    </view>
+  </navigator>
+  </view>
+
+  <!-- 导航栏 -->
+  <view class='nav-wrap'>
+    <view bindtap="activeType" data-index="{{index}}"class="nav-item {{index===currentType?'active':''}}" wx:for='{{navList}}' wx:key='{{index}}'>
+    {{item.type}}
+    </view>
+  </view>
+<!--内容栏-->
+  
+  <scroll-view> 
+    <block wx:for="{{goods}}">     
+        <card catchtap="cardtTouch"title="{{item.title}}" description="{{item.description}}"  pictureUrl="{{item.pictureUrl}}" price="{{item.price}}" date="{{item.date}}" comments="{{item.comments}}"></card>     
+    </block>
+  </scroll-view>
+
+</view>
