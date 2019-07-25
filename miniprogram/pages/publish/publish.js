@@ -17,10 +17,8 @@ Page({
     comment: {
       record: 1,
       clist1: [//楼
-        {}
       ],
       clist2: [//楼中楼
-        {}
       ]
     }
   },
@@ -48,7 +46,8 @@ Page({
         businessWay: res.detail.value['BusinessWay'],
         imgs: this.data.fileIDs,
         date: util.formatTime(new Date()),
-        comment: this.data.comment
+        comment: this.data.comment,
+        userName: this.data.userName
       }
     })
   },

@@ -17,39 +17,10 @@ Page({
     }
   },
 
-  test: function() {
-    const db = wx.cloud.database()
-    db.collection('Business').where({
-      _openid: this.data.openid,
-      body: 'test'
-    }).get({
-        success: res => {
-          this.setData({
-            urls: res.data[0]['imgs']
-          })
-          console.log('[数据库] [查询记录] 成功: ', res)
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '查询记录失败'
-          })
-          console.error('[数据库] [查询记录] 失败：', err)
-        }
-      })
-  },
-
-  test2: function(){
-    this.data.urls.forEach((item, i)=>{
-      wx.cloud.downloadFile({
-        fileID: item
-      }).then(res => {
-        // get temp file path
-        console.log(res.tempFilePath)
-      }).catch(error => {
-        // handle error
-        console.log(error)
-      })
-    }) 
+  test: function(event) {
+    var id = "face13585d3955330238040f337b5434";
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + id,
+    })
   }
 })

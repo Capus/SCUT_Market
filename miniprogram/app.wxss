@@ -1,13 +1,11 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
 @import 'style/page.wxss';
+
 .container {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
   box-sizing: border-box;
 } 
 
@@ -23,3 +21,8 @@ button::after{
   border: none;
 }
 
+view,scroll-view,swiper,swiper-item,text,progress,button,checkbox-group,checkbox,form,input,label,picker,radio-group,radio,slider,switch,action-sheet,action-sheet-item,action-sheet-cancel,modal,toast,loading,navigator,audio,video,map,canvas {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

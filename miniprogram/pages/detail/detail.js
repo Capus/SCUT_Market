@@ -4,6 +4,7 @@ Page({
 
   data: {
     openid: '',
+    userName: '',
     id: '',
     inputVal: '', //评论输入值
     focus: false, //键盘是否聚焦
@@ -44,7 +45,8 @@ Page({
           img_url: res.data.imgs,
           record: res.data.comment['record'],
           comment_list: res.data.comment['clist1'],
-          comment_list2: res.data.comment['clist2']
+          comment_list2: res.data.comment['clist2'],
+          userName: res.data.userName
         })
       }
     })
@@ -78,10 +80,66 @@ Page({
   //点击发送函数
   sendClick: function(e) {
     var comment_text = this.data.inputVal
-    //获取username
-    //TODO
+    var comment_user_name = this.data.userName
+    var comment_time = util.formatTime(new Date())
+    var reply_name = null
+    var parent_id = 0
+    var reply_id = this.data.now_reply
+    if (reply_id != 0) { //回复
+      var reply_type = this.data.now_reply_type
+      parent_id = this.data.now_parent_id
+      if (reply_type == 1) { //回复评论
+        parent_id = reply_id
+        reply_name = ''
+      } else { //回复评论的评论
+        reply_name = this.data.now_reply_name
+      }
+    } else {
+      //评论
+    }
+    var comment_detail = {
+      comment_id: this.data.record,
+      comment_user_name: comment_user_name,
+      comment_text: comment_text,
+      comment_time: comment_time,
+      reply_id: reply_id,
+      parent_id: parent_id,
+      reply_name: reply_name
+    }
+    console.log(comment_detail)
+    if (comment_detail.parent_id > 0) { //楼中楼
+      var clist2 = this.data.comment_list2
+      clist2.push(comment_detail)
+      this.setData({
+        comment_list2: clist2
+      })
+    } else { //楼
+      var clist = this.data.comment_list
+      clist.push(comment_detail)
+      this.setData({
+        comment_list: clist
+      })
+    }
+    var c_record = this.data.record
     this.setData({
-      inputVal: ''
+      inputVal: '',
+      record: c_record + 1
+    })
+    //更新数据库
+    var that = this
+    var c_comment = {
+      record: that.data.record,
+      clist1: that.data.comment_list,
+      clist2: that.data.comment_list2
+    }
+    const db = wx.cloud.database({});
+    db.collection('Business').doc(that.data.id).update({
+      data: {
+        comment: c_comment
+      },
+      success: function (res) {
+        console.log(res)
+      }
     })
   },
 
