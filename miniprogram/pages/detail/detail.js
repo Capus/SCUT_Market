@@ -46,7 +46,7 @@ Page({
           record: res.data.comment['record'],
           comment_list: res.data.comment['clist1'],
           comment_list2: res.data.comment['clist2'],
-          userName: res.data.userName
+          userName: app.globalData.userName
         })
       }
     })
@@ -132,14 +132,17 @@ Page({
       clist1: that.data.comment_list,
       clist2: that.data.comment_list2
     }
-    const db = wx.cloud.database({});
-    db.collection('Business').doc(that.data.id).update({
+    const db = wx.cloud.database({})
+    wx.cloud.callFunction({
+      name: 'update',
       data: {
-        comment: c_comment
+        comment: c_comment,
+        id: that.data.id
       },
-      success: function (res) {
+      success: function(res){
         console.log(res)
-      }
+      },
+      fail: console.error
     })
   },
 

@@ -11,6 +11,8 @@ Page({
     businessWay: '', //出售、收购、跑腿
     array: ['wechat', 'qq', 'telephone'],
     index: 0,
+    array2: ['出售', '收购', '跑腿'],
+    idnex2: 0,
     files: [],
     fileIDs: [],
     userName: '',
@@ -24,9 +26,16 @@ Page({
   },
 
   bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('picker1发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
+    })
+  },
+
+  bindPickerChange2: function(e) {
+    console.log('picker2发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index2: e.detail.value
     })
   },
 
@@ -167,7 +176,9 @@ Page({
     imgList.splice(id, len);
     that.setData({
       files: imgList,
-      inputValue: ""
+      inputValue: "",
+      index: 0,
+      index2: 0
     })
   },
 
