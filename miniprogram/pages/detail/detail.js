@@ -4,8 +4,8 @@ Page({
 
   data: {
     openid: '',
-    userName: '',
     id: '',
+    userName: '',
     inputVal: '', //评论输入值
     focus: false, //键盘是否聚焦
     placeholder: '留下你的评论吧！',
@@ -14,14 +14,16 @@ Page({
     now_reply_type: 0, //0是评论，1是回复评论，2是回复评论的评论
     now_parent_id: 0, //现在准备回复那条评论下的评论的id
     img_url: [],
-
+    area: '',//交易的地区
+    price: '',//价格
     record: 1, //手动控制comment_id
     comment_list: [{}],
     comment_list2: [{}],
 
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
+    //console.log(options)
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid
@@ -32,15 +34,17 @@ Page({
 
     //获取数据的id
     this.setData({
-      id: options.id
+      id: options._id//！！！命名不统一
     })
 
     const db = wx.cloud.database({});
     const cont = db.collection('Business');
-    cont.doc(options.id).get({
-      success: function(res) {
+    cont.doc(options._id).get({
+      success: function (res) {
         console.log(res.data)
         that.setData({
+          area: res.data.area,
+          price: res.data.price,
           business: res.data,
           img_url: res.data.imgs,
           record: res.data.comment['record'],
@@ -51,7 +55,6 @@ Page({
       }
     })
   },
-
   //键盘聚焦函数
   focus: function(e) {
     this.setData({

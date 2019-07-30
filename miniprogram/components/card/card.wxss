@@ -1,68 +1,70 @@
-.between{
-  height: 10px;
-  background-color: rgb(224, 221, 221);
-  border-top: 1rpx solid rgb(141, 139, 139);
-  
-}
-.market-card{
+.market-card {
   display: flex;
   flex-direction: column;
   flex: 1;
   background-color: rgb(255, 255, 255);
-
 }
-.market-card-main{
-display: flex;
+
+.market-card-main {
+  display: flex;
   flex-direction: column;
- 
 }
-.market-card-title{
 
+.market-card-title {
   font-weight: bold;
-  font-size:medium;
+  font-size: medium;
 }
-.market-card-dj{
-  font-weight:100;
-  font-size:x-small;
+
+.market-card-dj {
+  font-weight: 100;
+  font-size: x-small;
 }
-.market-card-description{
-  font-size:smaller;
+
+.market-card-description {
+  font-size: smaller;
   display: -webkit-box;
   word-break: break-all;
-   /*超出文字用省略号代替*/
-  text-overflow: ellipsis; 
+  /*超出文字用省略号代替*/
+  text-overflow: ellipsis;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp:3 ;
+  -webkit-line-clamp: 3;
   overflow: hidden;
+}
 
+.market-card-image {
+  flex-direction: row;
 }
-.market-card-image{
-  flex-direction: row
+
+.market-card-one-image {
+  margin-left: 10px;
+  height: 20vh;
+  width: 30vw;
 }
-.market-card-one-image{
-  margin-left: 20rpx; 
-  height: 200rpx;
-  width: 300rpx;
+
+.market-card-many-images {
+  margin-left: 10px;
+  height: 20vh;
+  width: 30vw;
 }
-.market-card-many-images{
-  margin-left: 20rpx; 
-  height: 200rpx;
-  width: 200rpx;
-}
-.market-card-pd{
+
+.market-card-pd {
   display: flex;
   justify-content: space-between;
-  font-size:smaller;
+  font-size: smaller;
 }
-.market-card-price{
-  color: rgb(54, 164, 253);
-  margin-left: 20rpx;
+
+.market-card-price {
+  color: rgb(231, 93, 99);
+  font-weight: bold;
 }
-.market-card-date{
+
+.market-card-date {
   color: rgb(122, 139, 153);
   margin-right: 30rpx;
+  font-size: 12px;
 }
-.market-card-divLine{
+
+.market-card-divLine {
   margin-top: 10rpx;
   margin-bottom: 10rpx;
   background: rgb(218, 219, 216);
@@ -70,13 +72,29 @@ display: flex;
   width: 95%;
   height: 3rpx;
 }
-.market-card-comment{
 
+.market-card-comment {
   margin-left: 20rpx;
   color: gray;
-  font-size:small;
+  font-size: small;
   margin-bottom: 5rpx;
 }
-.comments-acronym{
+
+.comments-acronym {
   color: rgb(51, 186, 248);
+}
+
+.market-card-area {
+  margin-left: 2px;
+  padding-right: 2px;
+  border: 1px solid ;
+  border-radius:4px;
+  color: rgb(51, 186, 248);
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.priceBottom-wrap {
+  display: flex;
+  text-align: center;
 }

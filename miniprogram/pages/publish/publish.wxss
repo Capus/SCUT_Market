@@ -1,5 +1,100 @@
 /* pages/publish/publish.wxss */
 
+.bottom-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.priceInput {
+  display: flex;
+  align-items: center;
+}
+
+.Type {
+  margin-left: 10px;
+  text-align: center;
+}
+
+/* 单选按钮样式*/
+
+radio .wx-radio-input {
+  border-radius: 50%; /* 圆角 */
+  width: 30rpx;
+  height: 30rpx;
+}
+
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+
+radio .wx-radio-input.wx-radio-input-checked {
+  border: 3rpx solid #fafafa !important;
+  background-color: #fcd771 !important;
+}
+
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%; /* 圆角 */
+  width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 25rpx; /* 对勾大小 30rpx */
+  color: rgb(0, 0, 0); /* 对勾颜色 白色 */
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+.btn-area{
+  display: flex;
+  
+   padding-bottom: 10px;
+align-items: center;
+}
+.btn1{
+  border-radius: 8px;
+  height: 40px;
+   background-color: #fcd771;
+  width:90%;
+  color:#000000;
+  
+}
+
+.selectType {
+  border-bottom: 1px solid rgb(243, 243, 243);
+
+  padding-left: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  background-color: white;
+  margin-bottom: 1px ;
+
+}
+.selectType1 {
+  border-bottom: 1px solid rgb(243, 243, 243);
+
+  padding-left: 5px;
+
+  display: flex;
+  background-color: white;
+  margin-bottom: 1px ;
+
+}
+
+.selectArea {
+  border-bottom: 1px solid rgb(243, 243, 243);
+    padding-left: 5px;
+ padding-top: 8px;
+  padding-bottom: 8px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: white;
+  margin-bottom: 1px;
+ 
+}
+
 .section {
   margin-top: 20px;
 }
@@ -32,7 +127,7 @@
   width: 370rpx;
   height: 490rpx;
   background: #eee;
-  border: 2rpx solid #f9c4c2;
+  border: 2rpx solid #7183e9;
   /* overflow:hidden; */
 }
 

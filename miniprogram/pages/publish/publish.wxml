@@ -1,44 +1,88 @@
 <!--pages/publish/publish.wxml-->
 <view class="page">
-  <view class="page__hd">
-    <view class="page__title">发布</view>
-    <view class="page__desc">内容输入</view>
-  </view>
   <form bindsubmit="formSubmit">
-    <view class="page__bd">
-      <view class="weui-cells__title">主题</view>
-      <view class="weui-cells weui-cells_after-title">
+
+    <view class="weui-cells weui-cells_after-title" style='border: ;margin-bottom:3px;'>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="Title" value="{{inputValue}}" placeholder="标题 标明品类型号能更快寻找买家" style="margin:5rpx; " />
+        </view>
+      </view>
+    </view>
+
+
+    <view class="weui-cells weui-cells_after-title" style=''>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" bindinput='bodyInput' placeholder="请描述一下物品内容吧" type="text" name="Body" value="{{inputValue}}" style="height: 25vh" />
+          <view class="weui-textarea-counter">{{currentLength}}/140</view>
+        </view>
+      </view>
+
+
+
+      <view class="weui-cell" style='margin-bottom:5px;;'>
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">上传图片(长按删除)</view>
+              <view class="weui-uploader__info">{{files.length}}/3</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for="{{files}}" wx:key="*this">
+                  <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="clearImg" id="{{item}}" data-id="{{index}}">
+                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                  </view>
+                </block>
+                <!-- <view class="weui-uploader__file">
+                    <image class="weui-uploader__img" src="../../images/icons/pic_160.png" mode="aspectFill" />
+                  </view>
+                  <view class="weui-uploader__file">
+                    <image class="weui-uploader__img" src="../../images/icons/pic_160.png" mode="aspectFill" />
+                  </view>
+                  <view class="weui-uploader__file">
+                    <image class="weui-uploader__img" src="../../images/icons/pic_160.png" mode="aspectFill" />
+                  </view> -->
+              </view>
+              <view class="weui-uploader__input-box">
+                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='bottom-wrap'>
+      <view class='selectType'>
+        <view style=' padding-left: 4vw;'>服务类型: </view>
+        <radio-group bindchange="bindBusinessChange" name="businessWay">
+          <radio checked="{{businessIndex==index?'true':''}}" value="{{businessWay[index]}}" wx:for="{{businessWay}}" wx:key="{{index}}" data-index="{{index}}" class='Type'>{{item}}</radio>
+        </radio-group>
+      </view>
+
+      <view class='selectArea'>
+        <view style=' padding-left: 4vw;'>地区: </view>
+        <radio-group bindchange="bindAreaChange" name="Area" >
+          <radio checked="{{0==index?'true':''}}" value="{{area[index]}}" wx:for="{{area}}" wx:key="{{index}}" data-index="{{index}}" class='Type'>{{item}}</radio>
+        </radio-group>
+      </view>
+
+      <view class='selectType1'>
         <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            <input class="weui-input" name="Title" value="{{inputValue}}" placeholder="请输入主题" />
+          <view style='display:flex; align-items:center;'>
+            <view>价格</view>
+            <view style='font-weight:bold'>￥:</view>
+            <input class="weui-input" type="digit" name="price" value="{{price}}" placeholder="0.00" style='color:black;font-weight:bold;'/>
           </view>
         </view>
       </view>
 
-      <view class="weui-cells__title">主体</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入主体" type="text" name="Body" value="{{inputValue}}" style="height: 3.3em" />
-            <view class="weui-textarea-counter">0/200</view>
-          </view>
-        </view>
-      </view>
-
-      <view class="weui-cells__title">BusinessWay</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            <input name="BusinessWay" value="{{inputValue}}" class="weui-input" placeholder="请输入文本" />
-          </view>
-        </view>
-      </view>
-
-      <view class="weui-cells__title">联系方式</view>
-      <view class="weui-cells weui-cells_after-title">
+      <view class='selectType1'>
         <view class="weui-cell weui-cell_select">
           <view class="weui-cell__hd" style="width: 105px">
-            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <picker bindchange="bindPickerChange" value="{{array[index]}}" range="{{array}}" name="contactWay">
               <view class="weui-select">{{array[index]}}</view>
             </picker>
           </view>
@@ -47,42 +91,10 @@
           </view>
         </view>
       </view>
-      <view class="weui-cells">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">
-            <view class="weui-uploader">
-              <view class="weui-uploader__hd">
-                <view class="weui-uploader__title">图片上传(长按删除)</view>
-                <view class="weui-uploader__info">{{files.length}}/3</view>
-              </view>
-              <view class="weui-uploader__bd">
-                <view class="weui-uploader__files" id="uploaderFiles">
-                  <block wx:for="{{files}}" wx:key="*this">
-                    <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="clearImg" id="{{item}}" data-id="{{index}}">
-                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                    </view>
-                  </block>
-                  <view class="weui-uploader__file">
-                    <image class="weui-uploader__img" src="../../images/icons/pic_160.png" mode="aspectFill" />
-                  </view>
-                  <view class="weui-uploader__file">
-                    <image class="weui-uploader__img" src="../../images/icons/pic_160.png" mode="aspectFill" />
-                  </view>
-                  <view class="weui-uploader__file">
-                    <image class="weui-uploader__img" src="../../images/icons/pic_160.png" mode="aspectFill" />
-                  </view>
-                </view>
-                <view class="weui-uploader__input-box">
-                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-btn-area">
-        <button class="weui-btn" type="primary" form-type="submit" bindtap="openToast">确定</button>
-      </view>
     </view>
+    <view class="btn-area" style='margin-top:15px;'>
+      <button class="btn1" form-type="submit" bindtap="openToast">确定</button>
+    </view>
+
   </form>
 </view>

@@ -15,22 +15,23 @@
   <!-- 地址栏 -->
   <navigator  url="../area/area" hover-class='navigator' class='area' >
     <view class='areaBorder' wx:for="{{currentArea}}" wx:key="{{index}}">
-      <text >{{item.local}}</text>
+      <text >{{currentArea}}</text>
     </view>
   </navigator>
   </view>
 
   <!-- 导航栏 -->
   <view class='nav-wrap'>
-    <view bindtap="activeType" data-index="{{index}}"class="nav-item {{index===currentType?'active':''}}" wx:for='{{navList}}' wx:key='{{index}}'>
+    <view bindtap="activeType" data-index="{{index}}"class="nav-item {{index==tradeType?'active':''}}" wx:for='{{navList}}' wx:key='{{index}}'>
     {{item.type}}
     </view>
   </view>
 <!--内容栏-->
   
   <scroll-view> 
-    <block wx:for="{{goods}}">     
-        <card catchtap="cardtTouch"title="{{item.title}}" description="{{item.description}}"  pictureUrl="{{item.pictureUrl}}" price="{{item.price}}" date="{{item.date}}" comments="{{item.comments}}"></card>     
+    <block wx:for="{{goods}}" wx:key="{{index}}"> 
+    <view wx:if="{{index!=0}}" class='between'></view>    
+        <card bindcatchtap="cardTouch"title="{{item.title}}" description="{{item.body}}" area="{{item.area}}" _id="{{item._id}}" pictureUrl="{{item.imgs}}" price="{{item.price}}" date="{{item.date}}" comments="{{item.comments}}"></card>     
     </block>
   </scroll-view>
 

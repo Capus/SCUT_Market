@@ -28,6 +28,14 @@ Component({
     comments:{
       type: Array,
       value: [],
+    },
+    area:{
+      type:String,
+      value:''
+    },
+    _id:{
+      type:String,
+      value:''
     }
   },
 
@@ -42,6 +50,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    _tapDetail(e){
+      //console.log(e);
+      var _id=this.properties._id;
+      //console.log(_id);
+      this.triggerEvent('catchtap',_id)
+    }
   }
 })

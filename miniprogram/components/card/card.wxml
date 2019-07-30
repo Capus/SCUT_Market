@@ -1,7 +1,8 @@
-<view class="market-card">
+<view class="market-card" bindtap='_tapDetail' data-_id='{{_id}}'>
+
   <view class="market-card-main">
     <view style='margin:10px;margin-left:20px;'>
-      <text class="market-card-title" >标题:{{title}}</text>
+      <text class="market-card-title" >{{title}}</text>
     </view>
     <view style='margin-left:15px;margin-right:8px;margin-bottom:0px;'>
       <text class="market-card-description">{{description}}</text>
@@ -11,29 +12,32 @@
     </view>
   </view>
   <view class="market-card-image">
-    <image wx:if="{{pictureUrl.length==1}}" class="market-card-one-image" src="{{pictureUrl[0]}}"></image>
+    <image wx:if="{{pictureUrl.length==1}}" class="market-card-one-image" mode='aspectFill' src="{{pictureUrl[0]}}"></image>
     <!--一张图片-->
     <block wx:for="{{pictureUrl}}" wx:if="{{pictureUrl.length>1}}">
       <!--0张图片或者2张，3张图片-->
-      <image wx:if="{{index<3}}" class="market-card-many-images" src="{{item}}"></image>
+      <image wx:if="{{index<3}}" class="market-card-many-images" mode='aspectFill' src="{{item}}"></image>
     </block>
   </view>
   <!--图片和价格-->
   <view class="market-card-pd">
     <!--日期和价格-->
-    <text class="market-card-price">价格：{{price}}</text>
-    <text class="market-card-date">日期：{{date}}</text>
+    <view class='priceBottom-wrap'>
+    <text style='margin-left: 20rpx;'>价格:</text>
+    <text class="market-card-price">￥{{price}}</text></view>
+    <view class='market-card-area'>{{area}}</view>
+    <text class="market-card-date" style='margin-top:2px;'>日期：{{date}}</text>
   </view>
   <view class="market-card-divLine"></view>
   <!--分割线-->
   <view class='market-card-comment'>
   <image src='../../images/xiaoxi.png' mode='widthFix' style='width:15px'></image>
-    <block wx:for="{{comments}}">
+    <block wx:for="{{comments}}" wx:key="{{index}}">
       <view wx:if="{{index<=1}}" style="margin-bottom:2px; margin-left:2px">
         <text>{{item.name}} : {{item.comment}}</text>
       </view>
     </block>
     <text wx:if="{{comments.length>2}}" class="comments-acronym">…</text>
   </view>
-  <view class='between'></view>
+  
 </view>

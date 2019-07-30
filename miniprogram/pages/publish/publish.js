@@ -5,14 +5,16 @@ Page({
 
   data: {
     openid: '',
+    area: [], //发布的校区
     inputValue: '', //清空输入框
     body: '', //标题、正文、号码
     contactWay: '', //微信、qq、电话
-    businessWay: '', //出售、收购、跑腿
-    array: ['wechat', 'qq', 'telephone'],
+    price: '', //价格
+    businessWay: ['收购', '出售', '代跑腿'],
+    businessIndex: 1,
+    array: ['微信', 'qq', '手机号'],
     index: 0,
-    array2: ['出售', '收购', '跑腿'],
-    idnex2: 0,
+    currentLength: 0,
     files: [],
     fileIDs: [],
     userName: '',
@@ -24,35 +26,47 @@ Page({
       ]
     }
   },
+  bindAreaChange(e) { //选择地区改变时
 
-  bindPickerChange: function(e) {
-    console.log('picker1发送选择改变，携带值为', e.detail.value)
+  },
+
+  bindBusinessChange(e) { //选择交易类型改变时
+    //console.log(e)
+    this.setData({
+      //businessIndex:e.target.dataset.index
+    })
+  },
+
+  bodyInput(e) {
+    //console.log(e.detail.cursor) //当前字数
+    this.setData({
+      currentLength: e.detail.cursor
+    })
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
     })
   },
 
-  bindPickerChange2: function(e) {
-    console.log('picker2发送选择改变，携带值为', e.detail.value)
+  formSubmit: function (res) {
+    console.log(res.detail.value)
     this.setData({
-      index2: e.detail.value
-    })
-  },
-
-  formSubmit: function(res) {
-    console.log(res)
-    this.setData({
-      body: res.detail.value,
-      contactWay: this.data.array[this.data.index],
+      body: '',//res.detail.value,
+      contactWay: '',// this.data.array[this.data.index],
+      price: '',
     })
     const db = wx.cloud.database()
     db.collection('Business').add({
       data: {
+        price: res.detail.value['price'],
+        area: res.detail.value['Area'],
         title: res.detail.value['Title'],
         body: res.detail.value['Body'],
         contact: res.detail.value['Contact'],
         contactWay: this.data.array[this.data.index],
-        businessWay: res.detail.value['BusinessWay'],
+        businessWay: res.detail.value['businessWay'],
         imgs: this.data.fileIDs,
         date: util.formatTime(new Date()),
         comment: this.data.comment,
@@ -61,13 +75,13 @@ Page({
     })
   },
 
-  chooseImage: function() {
+  chooseImage: function () {
     var that = this
     wx.chooseImage({
       count: 9,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function(res) {
+      success: function (res) {
         wx.showLoading({
           title: '上传中',
         })
@@ -115,7 +129,7 @@ Page({
     })
   },
 
-  previewImage: function(e) {
+  previewImage: function (e) {
     wx.previewImage({
       current: e.currentTarget.id,
       urls: this.data.files
@@ -154,36 +168,45 @@ Page({
               })
             }
           })
-        }
-        else if (res.cancel) {
+        } else if (res.cancel) {
           console.log('点击取消了');
           return false;
         }
       }
     })
   },
+  //TODO 添加若有必填信息未完成则提示  特别是联系方式 标题
+  showInfoToast() {
 
+  },
   openToast: function (params) {
-    wx.showToast({
-      title: '已完成',
-      icon: 'success',
-      duration: 3000
-    });
     var that = this;
-    let imgList = that.data.files;
-    let id = params.currentTarget.dataset.id;
-    let len = imgList.length;
-    imgList.splice(id, len);
-    that.setData({
-      files: imgList,
-      inputValue: "",
-      index: 0,
-      index2: 0
-    })
+    if (1) {
+      wx.showToast({
+        title: '已完成',
+        icon: 'success',
+        duration: 3000
+      });
+      var that = this;
+      let imgList = that.data.files;
+      let id = params.currentTarget.dataset.id;
+      let len = imgList.length;
+      imgList.splice(id, len);
+      that.setData({
+        files: imgList,
+        inputValue: ""
+      })
+    }
+
   },
 
 
-  onLoad: function(options) {
+  onLoad: function (options) {
+    this.setData({
+      area: app.globalData.area
+    })
+    //console.log(this.data.area)
+    //TODO
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid,

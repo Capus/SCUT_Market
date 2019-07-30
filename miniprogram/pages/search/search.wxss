@@ -10,7 +10,7 @@
 }
 
 .searchBox {
-  
+ 
   margin-top: 10rpx;
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@
   margin-left: 3vw;
   font-size: 35rpx;
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: #dfdfdf;
   width: 75vw;
 }
 .input.active{
@@ -38,6 +38,11 @@
 .searchButton.active{
   background-color: #ffd45d
 }
-
+.between{
+  height: 8px;
+  background-color: rgb(230, 230, 230);
+  border-top: 1rpx solid rgb(141, 139, 139);
+  
+}
 
 

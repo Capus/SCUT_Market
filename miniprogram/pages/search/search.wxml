@@ -5,7 +5,7 @@
 <image src='../../images/location.png' mode='widthFix'></image>
 <navigator  url="../area/area" hover-class='navigator' class='area' >
 <view class='areaBorder' wx:for="{{currentArea}}" wx:key="{{index}}">
-<text >当前地区:{{item.local}}</text>
+<text >当前地区:{{item}}</text>
 </view>
 </navigator>
 </view>
@@ -13,9 +13,15 @@
   <form bindsubmit="submit">
     <view class='searchBox'>
 
-      <input class="input {{inputFocus===true?'active':''}}" bindinput='bindinput' bindfocus='bindFocus' bindblur='loseFocus' name='input' bindconfirm='searchConfirm' confirm-type='search' placeholder='点击输入' value="{{inputValue}}"></input>
+      <input class="input {{inputFocus===true?'active':''}}" focus bindinput='bindinput' bindfocus='bindFocus' bindblur='loseFocus' name='input' bindconfirm='searchConfirm' confirm-type='search' placeholder='点击输入' value="{{inputValue}}"></input>
       <button disabled='{{btnState}}' class="searchButton {{btnState===false?'active':''}}" form-type='submit' plain>搜索</button>
     </view>
   </form>
-
+  <!-- 搜索结果栏 -->
+<scroll-view> 
+    <block wx:for="{{goods}}" wx:key="{{index}}"> 
+    <view wx:if="{{index!=0}}" class='between'></view>    
+        <card bindcatchtap="cardTouch"title="{{item.title}}" description="{{item.body}}" area="{{item.area}}" _id="{{item._id}}" pictureUrl="{{item.imgs}}" price="{{item.price}}" date="{{item.date}}" comments="{{item.comments}}"></card>     
+    </block>
+  </scroll-view>
 </view>

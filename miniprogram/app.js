@@ -13,25 +13,13 @@ App({
 
 
   globalData: {
+    openid: '',
     //地区信息
-    area: [{
-        "local": "全校范围",
-        "id": "0"
-      },
-      {
-        "local": "华工北校",
-        "id": "1"
-      },
-      {
-        "local": "华工南校",
-        "id": "2"
-      },
+    area: ["全校范围", "华工北校", "华工南校",
     ],
     //当前地区 默认值为
-    currentArea: [{
-      "local": "全校范围",
-      "id": "0"
-    }, ]
+    currentArea: ["全校范围",
+    ]
   }
 
 
