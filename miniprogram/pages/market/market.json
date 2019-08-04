@@ -2,7 +2,5 @@
   "usingComponents": {
     "card": "/components/card/card"
   },
-  
-    "enablePullDownRefresh": true
-  
+  "enablePullDownRefresh": true
 }

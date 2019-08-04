@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "c_card": "/components/c_card/c_card"
+  },
+  "enablePullDownRefresh": true
 }
