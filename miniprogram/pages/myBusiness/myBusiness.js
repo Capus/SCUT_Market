@@ -62,7 +62,14 @@ Page({
   deleteF: function(){
     const db = wx.cloud.database({});
     const cont = db.collection('Business').orderBy('date', 'desc');
-  }
+  },
+
+  cardTouch: function (e) {
+    //console.log("该条目_id为"+e.detail); //即该记录的_id，传到detail界面再进行查询渲染
+    wx.navigateTo({
+      url: '../detail/detail?_id=' + e.detail, //此处再添加传递的数据
+    })
+  },
 
 
 })
