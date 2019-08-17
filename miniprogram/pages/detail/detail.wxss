@@ -11,14 +11,19 @@
 .title{
   font-weight: bold; 
   font-size: 50rpx;
-  display: block;
+  margin-right: 10rpx;
+}
+
+.price {
+  color: rgb(231, 93, 99);
+  font-weight: bold;
 }
 
 .businessWay{
   font-weight: bold; 
   font-size: 35rpx;
   color: grey;
-  margin-top: 20rpx;
+  margin-top: 15rpx;
   display: block;
 }
 
@@ -47,7 +52,7 @@
  background: #E0E3DA;
  width: 100%;
  height: 5rpx;
- margin-top: 20rpx;
+ margin-top: 10rpx;
 }
 
 .comment {
@@ -119,4 +124,21 @@ input {
 .moment_img{
   width: 195rpx;
   height: 195rpx;
+}
+
+.function{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20rpx;
+  align-items: center;
+  margin-bottom: 0rpx;
+}
+
+.icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.numberOfLike{
+  font-size: 30rpx;
 }

@@ -6,7 +6,7 @@ Page({
 
   data: {
     openid: '',
-    token: ''
+    user: ''
   },
 
   per_info: function() {
@@ -30,7 +30,7 @@ Page({
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid,
-        token: app.globalData.openid.substring(6, 10)
+        user: app.globalData.userName
       })
     }
   }

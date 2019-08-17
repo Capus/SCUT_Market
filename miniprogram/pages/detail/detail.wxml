@@ -2,7 +2,8 @@
   <view class='detailContainer'>
     <scroll-view scroll-y>
       <text class='title'>{{business.title}}</text>
-      <text class='businessWay'>业务类型：{{business.businessWay}}</text>
+      <text class='price'>￥{{business.price}}</text>
+      <text class='businessWay'>{{business.businessWay}}</text>
       <view class="divLine"></view>
       <text class='body'>{{business.body}}</text>
       <view class="image_content">
@@ -13,6 +14,16 @@
       <text class='contact' style='font-size:30rpx;'>联系方式：{{business.contactWay}}：{{business.contact}}</text>
       <text style='font-weight: bold; font-size:25rpx; color:red;' bindtap='copyBtn'>[一键复制联系方式]</text>
       <text class='date'>发帖时间：{{business.date}}</text>
+      <view class='function'>
+        <view>
+          <image class='icon' catchtap='onLikeTap' wx:if="{{liked}}" src='/images/icons/like_click.png'></image>
+          <image class='icon' wx:else catchtap='onLikeTap' src='/images/icons/like.png'></image>
+          <text class='numberOfLike'>{{numberOfGood}}</text>
+        </view>
+        <view>
+          <image class='icon' catchtap='focus' src='/images/xiaoxi.png'></image>
+        </view>
+      </view>
       <view class="divLine"></view>
       <view style='margin-top: 20rpx;'>
         <text style='font-weight: bold; font-size: 35rpx; '>评论：</text>

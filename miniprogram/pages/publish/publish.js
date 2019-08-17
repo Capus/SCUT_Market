@@ -17,12 +17,13 @@ Page({
     currentLength: 0,
     files: [],
     fileIDs: [],
+    good_users: [],
     userName: '',
     comment: {
       record: 1,
-      clist1: [//楼
+      clist1: [ //楼
       ],
-      clist2: [//楼中楼
+      clist2: [ //楼中楼
       ]
     }
   },
@@ -43,19 +44,33 @@ Page({
       currentLength: e.detail.cursor
     })
   },
-  bindPickerChange: function (e) {
+  bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
     })
   },
 
-  formSubmit: function (res) {
+  formSubmit: function(res) {
+    if (res.detail.value['Contact'] == '') {
+      wx.showToast({
+        title: '请输入联系方式',
+      })
+      return;
+    }
+    if(res.detail.value['Title'] == ''){
+      wx.showToast({
+        title: '请输入标题',
+      })
+      return;
+    }
     console.log(res.detail.value)
     this.setData({
-      body: '',//res.detail.value,
-      contactWay: '',// this.data.array[this.data.index],
+      body: '', //res.detail.value,
+      contactWay: '', // this.data.array[this.data.index],
       price: '',
+      currentLength: 0,
+      fileIDs: [],
     })
     const db = wx.cloud.database()
     db.collection('Business').add({
@@ -70,18 +85,19 @@ Page({
         imgs: this.data.fileIDs,
         date: util.formatTime(new Date()),
         comment: this.data.comment,
+        good_users: this.data.good_users,
         userName: this.data.userName
       }
     })
   },
 
-  chooseImage: function () {
+  chooseImage: function() {
     var that = this
     wx.chooseImage({
       count: 9,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
         wx.showLoading({
           title: '上传中',
         })
@@ -129,14 +145,14 @@ Page({
     })
   },
 
-  previewImage: function (e) {
+  previewImage: function(e) {
     wx.previewImage({
       current: e.currentTarget.id,
       urls: this.data.files
     })
   },
 
-  clearImg: function (params) {
+  clearImg: function(params) {
     var that = this;
     let imgList = that.data.files;
     let id = params.currentTarget.dataset.id // 图片索引
@@ -147,7 +163,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确定要删除此图片吗？',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           console.log('点击确定了');
           imgList.splice(id, 1);
@@ -175,11 +191,8 @@ Page({
       }
     })
   },
-  //TODO 添加若有必填信息未完成则提示  特别是联系方式 标题
-  showInfoToast() {
 
-  },
-  openToast: function (params) {
+  openToast: function(params) {
     var that = this;
     if (1) {
       wx.showToast({
@@ -201,7 +214,7 @@ Page({
   },
 
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       area: app.globalData.area
     })

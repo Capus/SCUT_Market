@@ -1,5 +1,5 @@
 <!--pages/person/person.wxml-->
-<text>Hello! user: {{user}}</text>
+<text>Hello! {{user}}</text>
 <view class='userinfo'>
   <button class='userinfo-button'
   bindtap='per_info'>通知消息</button>
