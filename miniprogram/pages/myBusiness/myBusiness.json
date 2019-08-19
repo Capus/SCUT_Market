@@ -2,5 +2,6 @@
   "usingComponents": {
     "c_card": "/components/c_card/c_card"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "我的帖子(长按删除帖)"
 }

@@ -42,7 +42,7 @@ Page({
           arrs.push(objs);
         }
         this.setData({
-          goods: arrs
+          goods: arrs,
         });
         // console.log(arrs);
       }
@@ -53,15 +53,46 @@ Page({
   onLoad: function(options) {
     if (app.globalData.openid) {
       this.setData({
-        openid: app.globalData.openid
+        openid: app.globalData.openid,
       })
     }
     this.dBrequest();
   },
 
-  deleteF: function(){
-    const db = wx.cloud.database({});
-    const cont = db.collection('Business').orderBy('date', 'desc');
+  deleteF: function(e){
+    var that = this 
+    var _id = e.currentTarget.dataset.index;
+    var goodarr = this.data.goods;
+    if (goodarr.length > 1) {
+      goodarr.reverse()
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此帖吗？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('点击确定了');
+          goodarr.splice(_id,1);
+          that.setData({
+            goods: goodarr
+          })
+          wx.cloud.callFunction({
+            name: 'remove',
+            data: {
+              id: _id
+            },
+            success: function (res) {
+              console.log(res)
+              console.log("ok")
+            },
+            fail: console.error
+          })
+        }else if(res.cancel){
+          console.log('点击取消了');
+          return false;
+        }
+      }
+    })
   },
 
   cardTouch: function (e) {

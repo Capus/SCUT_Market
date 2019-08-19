@@ -4,6 +4,7 @@ Page({
 
   data: {
     openid: '',
+    openGid: '',
     id: '',
     userName: '',
     inputVal: '', //评论输入值
@@ -14,8 +15,8 @@ Page({
     now_reply_type: 0, //0是评论，1是回复评论，2是回复评论的评论
     now_parent_id: 0, //现在准备回复那条评论下的评论的id
     img_url: [],
-    area: '',//交易的地区
-    price: '',//价格
+    area: '', //交易的地区
+    price: '', //价格
     record: 1, //手动控制comment_id
     comment_list: [{}],
     comment_list2: [{}],
@@ -24,7 +25,7 @@ Page({
     numberOfGood: 0,
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     //console.log(options)
     if (app.globalData.openid) {
       this.setData({
@@ -37,12 +38,12 @@ Page({
 
     //获取数据的id
     this.setData({
-      id: options._id//！！！命名不统一
+      id: options._id //！！！命名不统一
     })
     const db = wx.cloud.database({});
     const cont = db.collection('Business');
     cont.doc(options._id).get({
-      success: function (res) {
+      success: function(res) {
         console.log(res.data)
         that.setData({
           area: res.data.area,
@@ -64,8 +65,7 @@ Page({
             liked: false
           })
           console.log("没点赞")
-        }
-        else {
+        } else {
           that.setData({
             liked: true
           })
@@ -73,6 +73,45 @@ Page({
         }
       }
     })
+
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+
+    if (options.scene == 1044) {
+      wx.getShareInfo({
+        shareTicket: options.shareTicket,
+        success: function(res) {
+          var encryptedData = res.encryptedData;
+          var iv = res.iv;
+        }
+      })
+    }
+  },
+
+  onShareAppMessage: function() {
+    return {
+      title: this.data.business.businessWay + ':' + this.data.business.title,
+      path: '/pages/detail/detail',
+      success: function(res) {
+        console.log("转发成功：" + JSON.stringify(res));
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function(res) {
+            console.log(res)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+          }
+        })
+      },
+      fail: function(res) {
+        console.log("转发失败：" + JSON.stringify(res));
+      }
+    }
   },
   //键盘聚焦函数
   focus: function(e) {
@@ -161,7 +200,7 @@ Page({
         comment: c_comment,
         id: that.data.id
       },
-      success: function(res){
+      success: function(res) {
         console.log(res)
       },
       fail: console.error
@@ -216,41 +255,40 @@ Page({
     })
   },
 
-  onLikeTap: function(e){
+  onLikeTap: function(e) {
     var that = this;
     var like = that.data.liked;
     var good_users = that.data.good_users;
     var name = that.data.userName;
     var index = -1;
-    if(like){
+    if (like) {
       this.setData({
         liked: false
       });
       index = good_users.indexOf(name);
       if (index > -1) {
         good_users.splice(index, 1);
-      } 
+      }
       console.log(index)
       console.log(good_users)
-    }else{
+    } else {
       this.setData({
         liked: true
       });
       good_users.push(name);
       console.log(good_users)
     }
-    this.setData(
-      {
-        good_users: good_users,
-        numberOfGood: good_users.length,
-      })
+    this.setData({
+      good_users: good_users,
+      numberOfGood: good_users.length,
+    })
     wx.cloud.callFunction({
       name: 'update_good_users',
       data: {
         good_users: good_users,
         id: that.data.id
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         console.log("ok")
       },

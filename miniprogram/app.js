@@ -14,6 +14,8 @@ App({
 
   globalData: {
     openid: '',
+    openGid: '',
+    shareTicket: '',
     //地区信息
     area: ["全校范围", "华工北校", "华工南校",
     ],

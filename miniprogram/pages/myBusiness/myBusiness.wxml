@@ -2,7 +2,7 @@
   <scroll-view>
     <block wx:for="{{goods}}" wx:key="{{index}}">
       <view wx:if="{{index!=0}}" class='between'></view>
-      <c_card bindcatchtap="cardTouch" title="{{item.title}}" description="{{item.body}}" area="{{item.area}}" _id="{{item._id}}" pictureUrl="{{item.imgs}}" date="{{item.date}}"
+      <c_card bindcatchtap="cardTouch" bindlongpress="deleteF" data-index="{{item._id}}" title="{{item.title}}" description="{{item.body}}" area="{{item.area}}" _id="{{item._id}}" pictureUrl="{{item.imgs}}" date="{{item.date}}"
       price="{{item.price}}"></c_card>
     </block>
   </scroll-view>
