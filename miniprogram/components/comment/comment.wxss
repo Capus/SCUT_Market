@@ -1,0 +1,100 @@
+.market-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: rgb(255, 255, 255);
+}
+
+.market-card-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.market-card-title {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.market-card-dj {
+  font-weight: 100;
+  font-size: x-small;
+}
+
+.market-card-description {
+  font-size: smaller;
+  display: -webkit-box;
+  word-break: break-all;
+  /*超出文字用省略号代替*/
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.market-card-image {
+  flex-direction: row;
+}
+
+.market-card-one-image {
+  margin-left: 10px;
+  height: 20vh;
+  width: 30vw;
+}
+
+.market-card-many-images {
+  margin-left: 10px;
+  height: 20vh;
+  width: 30vw;
+}
+
+.market-card-pd {
+  display: flex;
+  justify-content: space-between;
+  font-size: smaller;
+}
+
+.market-card-price {
+  color: rgb(231, 93, 99);
+  font-weight: bold;
+}
+
+.market-card-date {
+  color: rgb(122, 139, 153);
+  margin-right: 30rpx;
+  font-size: 12px;
+}
+
+.market-card-divLine {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  background: rgb(218, 219, 216);
+  margin-left: 2.5%;
+  width: 95%;
+  height: 3rpx;
+}
+
+.market-card-comment {
+  margin-left: 20rpx;
+  color: gray;
+  font-size: small;
+  margin-bottom: 5rpx;
+}
+
+.comments-acronym {
+  color: rgb(51, 186, 248);
+}
+
+.market-card-area {
+  margin-left: 2px;
+  padding-right: 2px;
+  border: 1px solid ;
+  border-radius:4px;
+  color: rgb(51, 186, 248);
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.priceBottom-wrap {
+  display: flex;
+  text-align: center;
+}

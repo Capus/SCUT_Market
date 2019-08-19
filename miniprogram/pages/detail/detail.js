@@ -6,6 +6,7 @@ Page({
     openid: '',
     openGid: '',
     id: '',
+    contact_user: '',
     userName: '',
     inputVal: '', //评论输入值
     focus: false, //键盘是否聚焦
@@ -56,6 +57,7 @@ Page({
           good_users: res.data.good_users,
           numberOfGood: res.data.good_users.length,
           userName: app.globalData.userName,
+          contact_user: res.data.userName
         })
 
         var index = res.data.good_users.indexOf(that.data.userName);
@@ -142,6 +144,7 @@ Page({
   sendClick: function(e) {
     var comment_text = this.data.inputVal
     var comment_user_name = this.data.userName
+    var contact_user_name = this.data.contact_user
     var comment_time = util.formatTime(new Date())
     var reply_name = null
     var parent_id = 0
@@ -163,6 +166,7 @@ Page({
       comment_user_name: comment_user_name,
       comment_text: comment_text,
       comment_time: comment_time,
+      contact_user_name: contact_user_name,
       reply_id: reply_id,
       parent_id: parent_id,
       reply_name: reply_name

@@ -1,2 +1,8 @@
-<!--pages/per_info/per_info.wxml-->
-<text>pages/per_info/per_info.wxml</text>
+<view>
+  <scroll-view>
+    <block wx:for="{{comments}}" wx:key="{{index}}">
+      <view wx:if="{{index!=0}}" class='between'></view> 
+      <comment bindcatchtap="cardTouch" user="{{item.comment_user_name}}" comment="{{item.comment_text}}"  _id="{{item._id}}" time="{{item.time}}"></comment>
+    </block>
+  </scroll-view>
+</view>

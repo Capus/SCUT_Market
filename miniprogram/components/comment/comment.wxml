@@ -1,0 +1,7 @@
+<view class="market-card" bindtap='_tapDetail' data-_id='{{_id}}'>
+<text>{{user}}:{{comment}}</text>
+<text>{{time}}</text>
+<view class="market-card-divLine"></view>
+  <!--分割线-->
+ 
+</view>
