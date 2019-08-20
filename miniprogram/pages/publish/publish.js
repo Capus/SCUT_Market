@@ -76,13 +76,7 @@ Page({
       return;
     }
     console.log(res.detail.value)
-    this.setData({
-      body: '', //res.detail.value,
-      contactWay: '', // this.data.array[this.data.index],
-      price: '',
-      currentLength: 0,
-      fileIDs: [],
-    })
+
     const db = wx.cloud.database()
     db.collection('Business').add({
       data: {
@@ -99,6 +93,13 @@ Page({
         good_users: this.data.good_users,
         userName: this.data.userName
       }
+    })
+    this.setData({
+      body: '', //res.detail.value,
+      contactWay: '', // this.data.array[this.data.index],
+      price: '',
+      currentLength: 0,
+      fileIDs: [],
     })
   },
 
