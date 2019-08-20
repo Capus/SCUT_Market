@@ -76,19 +76,7 @@ Page({
       }
     })
 
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-
-    if (options.scene == 1044) {
-      wx.getShareInfo({
-        shareTicket: options.shareTicket,
-        success: function(res) {
-          var encryptedData = res.encryptedData;
-          var iv = res.iv;
-        }
-      })
-    }
+    
   },
 
   onShareAppMessage: function() {

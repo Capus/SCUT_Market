@@ -51,6 +51,7 @@ Page({
     })
   },
 
+
   formSubmit: function(res) {
     if (res.detail.value['Contact'] == '') {
       wx.showToast({
@@ -58,9 +59,19 @@ Page({
       })
       return;
     }
-    if(res.detail.value['Title'] == ''){
+    if (res.detail.value['Title'] == '') {
       wx.showToast({
         title: '请输入标题',
+      })
+      return;
+    }
+    var regPos = /^\d+(\.\d+)?$/; //非负浮点数
+    var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+    if (regPos.test(res.detail.value['price']) || regNeg.test(res.detail.value['price'])) {
+      //continue
+    } else {
+      wx.showToast({
+        title: '请输入价格',
       })
       return;
     }
