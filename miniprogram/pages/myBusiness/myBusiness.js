@@ -63,9 +63,6 @@ Page({
     var that = this 
     var _id = e.currentTarget.dataset.index;
     var goodarr = this.data.goods;
-    if (goodarr.length > 1) {
-      goodarr.reverse()
-    }
     wx.showModal({
       title: '提示',
       content: '确定要删除此帖吗？',
