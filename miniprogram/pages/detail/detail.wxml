@@ -8,7 +8,7 @@
       <text class='body'>{{business.body}}</text>
       <view class="image_content">
         <view class='image' wx:for="{{img_url}}" wx:key>
-          <image class="moment_img" src="{{item}}" bindtap='previewImg' data-source='{{item}}'></image>
+          <image class="moment_img" src="{{item}}" bindtap='previewImg' mode='aspectFill' data-source='{{item}}'></image>
         </view>
       </view>
       <text class='contact' style='font-size:30rpx;'>联系方式：{{business.contactWay}}：{{business.contact}}</text>
