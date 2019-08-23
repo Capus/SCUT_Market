@@ -142,9 +142,11 @@ Page({
       parent_id = this.data.now_parent_id
       if (reply_type == 1) { //回复评论
         parent_id = reply_id
-        reply_name = ''
+        reply_name = this.data.now_reply_name
+        contact_user_name = reply_name
       } else { //回复评论的评论
         reply_name = this.data.now_reply_name
+        contact_user_name = reply_name
       }
     } else {
       //评论
